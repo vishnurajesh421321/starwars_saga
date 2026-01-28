@@ -1,23 +1,52 @@
-import useFetchQuery from "../../../hooks/use-fetch-query.ts";
-import {MOVIE_API_BASE} from "../../../lib/config.ts";
-import type {Movie, SelectItem} from "../../type.ts";
-import useFilterMovies from "../hooks/use-filter-movies.ts";
+import useFetchMovies from '../../../hooks/use-fetch-movies.ts';
+import type { Movie, SelectItem } from '../../type.ts';
+import useFilterMovies from '../hooks/use-filter-movies.ts';
+import MovieListItem from './movie-list-item.tsx';
 
-
-function MoviesList({query, sort}: {query: string, sort: SelectItem | null}) {
-    const {data: movies, isPending, isError} = useFetchQuery<Movie[]>(['movies'], MOVIE_API_BASE);
-    const filteredMovies = useFilterMovies(movies, query, sort)
-    if(isPending) {
-        return <div>Loading...</div>;
-    }
-    if(isError) {
-        return <div>Error...</div>;
-    }
+type MovieListProps = {
+  query: string;
+  sort: SelectItem | null;
+  selectedMovie: Movie | null;
+  setSelectedMovie: (movie: Movie | null) => void;
+};
+function MoviesList({
+  query,
+  sort,
+  selectedMovie,
+  setSelectedMovie,
+}: MovieListProps) {
+  const { data: movies, isPending, isError, error } = useFetchMovies();
+  const filteredMovies = useFilterMovies(movies, query, sort);
+  const handleSelectedMovie = (movie: Movie) => {
+    setSelectedMovie(movie);
+  };
+  if (isPending) {
     return (
-        filteredMovies?.map((movie) => (
-            <div key={movie.episode_id}>{movie.title}</div>
-        ))
+      <div className="w-full h-full flex items-center justify-center">
+        Loading...
+      </div>
     );
+  }
+  if (isError) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        Something went wrong...
+        {error?.message ?? ''}
+      </div>
+    );
+  }
+  return (
+    <div className="h-full overflow-y-auto">
+      {filteredMovies?.map(movie => (
+        <MovieListItem
+          selectedMovie={selectedMovie}
+          onSelectMovie={handleSelectedMovie}
+          key={movie.episode_id}
+          movie={movie}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default MoviesList;

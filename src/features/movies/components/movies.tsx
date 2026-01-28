@@ -1,10 +1,7 @@
-import type {ReactElement} from "react";
+import type { ReactElement } from 'react';
 
-
-function Movies({children}:{children:ReactElement}) {
-    return (
-        <>{children}</>
-    );
+function Movies({ children }: { children: ReactElement }) {
+  return <>{children}</>;
 }
 
 export default Movies;

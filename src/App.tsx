@@ -1,33 +1,37 @@
-
-import './App.css'
-import Header from "./components/layout/header.tsx";
-import MainSection from "./components/layout/main-section.tsx";
-import Movies from "./features/movies/components/movies.tsx";
-import MovieDetails from "./features/movies/components/movie-details.tsx";
-import {useState} from "react";
-import type {SelectItem} from "./features/type.ts";
-import useDebounce from "./hooks/use-debounce.ts";
-import MoviesList from "./features/movies/components/movies-list.tsx";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-const queryClient = new QueryClient()
+import './App.css';
+import Header from './components/layout/header.tsx';
+import MainSection from './components/layout/main-section.tsx';
+import Movies from './features/movies/components/movies.tsx';
+import MovieDetails from './features/movies/components/movie-details.tsx';
+import { useState } from 'react';
+import type { Movie, SelectItem } from './features/type.ts';
+import useDebounce from './hooks/use-debounce.ts';
+import MoviesList from './features/movies/components/movies-list.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+const queryClient = new QueryClient();
 function App() {
-    const [searchQuery, setSearchQuery] = useState("");
-    const [sort, setSort] = useState<SelectItem | null>(null);
-    const handleSearch = useDebounce(searchQuery, 1000);
-
-    return (
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sort, setSort] = useState<SelectItem | null>(null);
+  const handleSearch = useDebounce(searchQuery, 300);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  return (
     <div className="h-screen flex flex-col">
-        <QueryClientProvider client={queryClient}>
-            <Header setSort={setSort} setSearchQuery={setSearchQuery} />
-            <MainSection>
-                <Movies>
-                    <MoviesList query={handleSearch} sort={sort}/>
-                </Movies>
-                <MovieDetails/>
-            </MainSection>
-        </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <Header setSort={setSort} setSearchQuery={setSearchQuery} />
+        <MainSection>
+          <Movies>
+            <MoviesList
+              query={handleSearch}
+              sort={sort}
+              selectedMovie={selectedMovie}
+              setSelectedMovie={setSelectedMovie}
+            />
+          </Movies>
+          <MovieDetails movie={selectedMovie} />
+        </MainSection>
+      </QueryClientProvider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
