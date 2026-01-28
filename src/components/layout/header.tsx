@@ -5,12 +5,12 @@ import InputBox from "../ui/input-box.tsx";
 
 function Header() {
     const items: SelectItem[] = [
-        {value: 'test', label: 'Test'},
-        {value: 'test', label: 'Test sdfgs fskjf sjgfjs'},
+        {value: 'release_date', label: 'Year'},
+        {value: 'episode_id', label: 'Episode'},
     ]
     const icon = <img className="w-4" src="/src/assets/svg/search.svg" alt="search"/>;
     return (
-        <div className="flex w-full gap-5 bg-gray-200 items-center ps-8 pe-8 pt-3 pb-3 border-b-1 border-gray-300">
+        <div className="flex w-full gap-5 bg-gray-200 items-center ps-6 pe-6 pt-3 pb-3 border-b-1 border-gray-300">
             <SelectBox placeholder="SORT BY..." items={items} onChange={() => console.log('Selected item')} />
             <InputBox icon={icon} placeholder="Type to filter..." onChange={() => console.log('Selected item')} />
         </div>

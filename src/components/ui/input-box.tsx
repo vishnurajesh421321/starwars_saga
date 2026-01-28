@@ -7,7 +7,7 @@ type InputBoxProps = {
     onChange?: (value: string) => void;
     icon?: React.ReactNode;
 }
-function InputBox({type,value = 'text', onChange,placeholder, icon}: InputBoxProps) {
+function InputBox({type = 'text',value, onChange,placeholder, icon}: InputBoxProps) {
     const [inputValue, setInputValue] = React.useState(value);
     const handleChange = (v: string)   => {
         setInputValue(v);
@@ -18,7 +18,7 @@ function InputBox({type,value = 'text', onChange,placeholder, icon}: InputBoxPro
             <div className="absolute left-0 top-0 w-[40px] h-full flex items-center justify-center">
                 {icon}
             </div>
-            <input className="w-full h-full focus-visible:outline-gray-400 ps-[40px]" onChange={(e) => handleChange(e.target.value)}
+            <input className="w-full h-full focus-visible:outline-0 ps-[40px]" onChange={(e) => handleChange(e.target.value)}
                    value={inputValue}
                    placeholder={placeholder}
                    type={type}/>
