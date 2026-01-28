@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 
 type InputBoxProps = {
     type?: 'password' | 'email' | 'text';
@@ -7,8 +7,8 @@ type InputBoxProps = {
     onChange?: (value: string) => void;
     icon?: React.ReactNode;
 }
-function InputBox({type = 'text',value, onChange,placeholder, icon}: InputBoxProps) {
-    const [inputValue, setInputValue] = React.useState(value);
+function InputBox({type = 'text',value = '', onChange,placeholder, icon}: InputBoxProps) {
+    const [inputValue, setInputValue] = useState(value);
     const handleChange = (v: string)   => {
         setInputValue(v);
         onChange?.(v)

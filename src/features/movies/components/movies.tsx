@@ -1,8 +1,9 @@
+import type {ReactElement} from "react";
 
 
-function Movies() {
+function Movies({children}:{children:ReactElement}) {
     return (
-        <div>Moview</div>
+        <>{children}</>
     );
 }
 
