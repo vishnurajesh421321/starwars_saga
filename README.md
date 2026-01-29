@@ -1,73 +1,28 @@
-# React + TypeScript + Vite
+# Star Wars Saga
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Future Improvements
 
-Currently, two official plugins are available:
+The following enhancements can be considered to further improve the quality, scalability, and usability of the application:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### State & Data Sharing
 
-## React Compiler
+- Use React Context where appropriate to avoid prop drilling when passing data through deeply nested components.
+- Introduce a state management library such as Redux or Zustand if application state grows in complexity.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Accessibility
 
-## Expanding the ESLint configuration
+- Improve accessibility by adding proper label elements and relevant ARIA attributes.
+- Align the application with WCAG accessibility standards to support assistive technologies.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Testing
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Add unit tests using Vitest or Jest for components, hooks, and utilities.
+- Introduce end-to-end tests using Playwright or Cypress for critical user flows.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Responsive Design
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+- Enhance responsiveness to ensure consistent behavior across mobile, tablet, and desktop devices.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Error Handling & Logging
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+- Implement centralized error handling and introduce a logger service for improved debugging and monitoring.
