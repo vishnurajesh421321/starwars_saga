@@ -12,6 +12,6 @@ export default function useOutsideClick(
       handler();
     }
     document.addEventListener('mousedown', handleOutsideClick);
-    return () => removeEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, [ref, handler]);
 }

@@ -14,6 +14,6 @@ export type MovieData = {
   Ratings: Rating[];
 };
 export type Rating = {
-  Source: string;
+  Source: 'Internet Movie Database' | 'Rotten Tomatoes' | 'Metacritic';
   Value: string;
 };
