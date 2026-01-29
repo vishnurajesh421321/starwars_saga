@@ -4,7 +4,7 @@ import Chip from '../../../components/ui/chip.tsx';
 function RatingChipList({ rating }: { rating: Rating[] | undefined }) {
   return (
     <div className="flex gap-2 mt-3">
-      {rating && rating.map(r => <Chip rating={r} />)}
+      {rating && rating.map(r => <Chip key={r.Source} rating={r} />)}
     </div>
   );
 }

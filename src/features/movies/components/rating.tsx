@@ -4,6 +4,7 @@ function Rating({ rating, size = 10 }: { rating: number; size?: number }) {
     <div className="flex gap-1 items-center">
       {ratingScale.map(r => (
         <img
+          key={r}
           style={{ width: size }}
           src={
             r < rating

@@ -1,23 +1,21 @@
-import { useState } from 'react';
+import React from 'react';
 
 type InputBoxProps = {
   type?: 'password' | 'email' | 'text';
   placeholder?: string;
   value?: string;
-  onChange?: (value: string) => void;
+  onChange: (value: string) => void;
   icon?: React.ReactNode;
 };
 function InputBox({
   type = 'text',
-  value = '',
+  value,
   onChange,
   placeholder,
   icon,
 }: InputBoxProps) {
-  const [inputValue, setInputValue] = useState(value);
   const handleChange = (v: string) => {
-    setInputValue(v);
-    onChange?.(v);
+    onChange(v);
   };
   return (
     <div className="relative w-full h-[40px] bg-white border border-gray-300 rounded-[4px]">
@@ -27,7 +25,7 @@ function InputBox({
       <input
         className="w-full h-full focus-visible:outline-0 ps-[40px]"
         onChange={e => handleChange(e.target.value)}
-        value={inputValue}
+        value={value}
         placeholder={placeholder}
         type={type}
       />

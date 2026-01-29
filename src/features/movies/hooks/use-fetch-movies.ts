@@ -1,7 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { API_KEY, MOVIE_API_BASE, RATING_API_BASE } from '../lib/config.ts';
-import type { Movie, MovieData } from '../features/type.ts';
-import { averageRating } from '../features/movies/utils/average-rating.ts';
+import {
+  API_KEY,
+  MOVIE_API_BASE,
+  RATING_API_BASE,
+} from '../../../lib/config.ts';
+import type { Movie, MovieData } from '../../type.ts';
+import { averageRating } from '../utils/average-rating.ts';
 
 async function fetchMovies(): Promise<Movie[]> {
   const response = await fetch(MOVIE_API_BASE);

@@ -1,4 +1,4 @@
-import useFetchMovies from '../../../hooks/use-fetch-movies.ts';
+import useFetchMovies from '../hooks/use-fetch-movies.ts';
 import type { Movie, SelectItem } from '../../type.ts';
 import useFilterMovies from '../hooks/use-filter-movies.ts';
 import MovieListItem from './movie-list-item.tsx';

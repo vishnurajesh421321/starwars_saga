@@ -17,7 +17,11 @@ function App() {
   return (
     <div className="h-screen flex flex-col">
       <QueryClientProvider client={queryClient}>
-        <Header setSort={setSort} setSearchQuery={setSearchQuery} />
+        <Header
+          setSort={setSort}
+          setSearchQuery={setSearchQuery}
+          setSelectedMovie={setSelectedMovie}
+        />
         <MainSection>
           <Movies>
             <MoviesList
